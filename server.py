@@ -13,7 +13,12 @@ def make_reply(msg):
 update_id = None
 while True:
     updates = bot.get_updates(offset=update_id)
-    updates = updates["result"]
+    try:
+        updates = updates["result"]
+    except KeyError:
+        print("You first have to create a bot and put the token into the config file.")
+        print("Aborting.")
+        break
     if updates:
         for item in updates:
             update_id = item["update_id"]
