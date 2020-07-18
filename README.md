@@ -15,3 +15,8 @@
 ### Usage:
  * Make a telegram bot and get the API token, and paste it inside `config.cfg`
  * ```$ python server.py```
+
+# Changelog
+
+ * Added an exception catch to give more useful error message
+ * Added exception handler as catching all exceptions is very bad style
