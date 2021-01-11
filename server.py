@@ -16,11 +16,16 @@ while True:
     updates = updates["result"]
     if updates:
         for item in updates:
+            REPLY_POSSIBLE = True
             update_id = item["update_id"]
             try:
                 message = str(item["message"]["text"])
             except:
                 message = None
-            from_ = item["message"]["from"]["id"]
-            reply = make_reply(message)
-            bot.send_message(reply, from_)
+            if "from" in item["message"]:
+                from_ = item["message"]["from"]["id"]
+            else:
+                REPLY_POSSIBLE = False
+            if REPLY_POSSIBLE:
+                reply = make_reply(message)
+                bot.send_message(reply, from_)
